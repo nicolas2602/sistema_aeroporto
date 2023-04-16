@@ -1,7 +1,9 @@
 <?php
     include("php/conexao.php");
-    include("php/insert.php");
+    include("php/insertPais.php");
+    include("php/updatePais.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +23,7 @@
                     <div class="row">               
                         <div class="col">
                             <label for="">Digite o nome do país:</label>
-                            <input type="text" class="form-control" name="nomePais">
+                            <input type="text" class="form-control" name="nomePais" required>
                         </div>
                         <p></p>
                         <div class="row">
@@ -44,6 +46,7 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">País</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -59,6 +62,16 @@
                 <tbody>
                     <td><?php echo($IdPais)?></td>
                     <td><?php echo($nomePais) ?></td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
+                            data-bs-target="#modalEditPais" data-bs-whateverPais="<?=$IdPais;?>"
+                            data-bs-whateverNome="<?=$nomePais;?>">
+                            Atualizar
+                        </button>
+                        <a href="" class="btn btn-danger btn-sm" onclick="return confirm('Deseja apagar o registro?');">
+                            Excluir
+                        </a>
+                    </td>
                 </tbody>
 
                 <?php } ?>
@@ -66,5 +79,24 @@
             </table>
         </div>
     </div>
+    <?php include("include/modalUpPais.php"); ?>
+    <script type="text/javascript">
+        var modal_pais = document.getElementById('modalEditPais')
+            modal_pais.addEventListener('show.bs.modal', function (event) {               
+            var button = event.relatedTarget
+
+            var idPais = button.getAttribute('data-bs-whateverPais')
+            var nomePais = button.getAttribute('data-bs-whateverNome')
+
+            var modalTitle = modal_pais.querySelector('.modal-title')
+            var idInput = modal_pais.querySelector('#idPais')
+            var paisInput = modal_pais.querySelector('#nomePais')
+
+            modalTitle.textContent = 'ID do País: ' + idPais
+            idInput.value = idPais
+            paisInput.value = nomePais
+        })
+    </script>
+    <?php include("include/script.php"); ?>
 </body>
 </html>
