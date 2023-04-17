@@ -5,7 +5,7 @@ create table pais(
     nomePais varchar(100) not null
 );
 
-insert into pais(nomePais) values('Brasil'), ('Japão'), ('Estado Unidos');
+insert into pais(nomePais) values('Brasil'), ('França'), ('Japão');
 
 create table cidade(
     IdCidade int primary key AUTO_INCREMENT,
@@ -13,6 +13,8 @@ create table cidade(
     fk_IdPais int not null,
     foreign key(fk_IdPais) references pais(IdPais)
 );
+
+insert into cidade(nomeCidade, fk_IdPais) values('São Paulo', 1), ('Paris', 2), ('Tóquio', 3), ('Rio de Janeiro', 1);
 
 create table aeroporto(
     IdAeroporto int primary key AUTO_INCREMENT
