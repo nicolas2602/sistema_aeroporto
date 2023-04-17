@@ -1,5 +1,4 @@
 <?php
-    include("conexao.php");
 
     if(isset($_POST['upPais'])){
         $IdPais = $_POST['IdPais'];
