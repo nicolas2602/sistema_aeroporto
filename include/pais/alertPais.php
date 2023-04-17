@@ -18,7 +18,7 @@
         ");
     }
 
-    if(isset($_POST['del'])){
+    if(isset($_POST['delPais'])){
         echo("
             <div class='alert alert-danger alert-dismissible fade show text-center' role='alert'>
                 Excluído com sucesso!
