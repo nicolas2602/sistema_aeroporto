@@ -23,7 +23,7 @@
         <div class="container">
             <div class="d-flex justify-content-evenly">
                 <form method="post">
-                    <input type="submit" class="btn btn-danger" value="Fechar" name="fechar">
+                    <input type="submit" class="btn btn-danger" value="Fechar" data-bs-toggle="modal" name="fechar">
                     <input type="submit" class="btn btn-success" value="Mostrar os países" name="showPais">
                     <input type="submit" class="btn btn-primary" value="Mostrar as cidades" name="showCidade">
                 </form>

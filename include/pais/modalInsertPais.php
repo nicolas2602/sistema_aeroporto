@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="submit" class="btn btn-success mb-3" name="cadPais" value="Cadastrar">
+                <input type="submit" class="btn btn-success mb-3" name="cadPais" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Cadastrar">
             </div>
         </form>
     </div>
