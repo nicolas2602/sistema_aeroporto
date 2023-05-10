@@ -1,11 +1,25 @@
 create database sistema_aeroporto;
 
+/**********************************************************************/
+
 create table pais(
     IdPais int primary key AUTO_INCREMENT,
     nomePais varchar(100) not null
 );
 
+-- Recuperar ou Exibir
+select * from pais;
+
+-- Inserir
 insert into pais(nomePais) values('Brasil'), ('França'), ('Japão');
+
+-- Atualizar
+update pais set nomePais='Canada' where IdPais=2;
+
+-- Deletar
+delete from pais where IdPais=1;
+
+/**********************************************************************/
 
 create table cidade(
     IdCidade int primary key AUTO_INCREMENT,
@@ -14,7 +28,18 @@ create table cidade(
     foreign key(fk_IdPais) references pais(IdPais)
 );
 
+select IdCidade, nomeCidade, nomePais
+from cidade as city
+inner join pais as country
+on city.fk_IdPais = country.IdPais;
+
 insert into cidade(nomeCidade, fk_IdPais) values('São Paulo', 1), ('Paris', 2), ('Tóquio', 3), ('Rio de Janeiro', 1);
+
+update cidade set nomeCidade='Vancouver' where IdCidade;
+
+delete from cidade where IdCidade=1;
+
+/**********************************************************************/
 
 create table aeroporto(
     IdAeroporto int primary key AUTO_INCREMENT
