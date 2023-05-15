@@ -1,8 +1,31 @@
 <div class="d-flex justify-content-center">
     <div class="container">
-        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalInsertPais">
-            Adicionar países
-        </button>
+        <h3>Tabela de países</h3>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="container">
+        <hr>
+        <div class="row justify-content-start">
+            <div class="dropdown">
+                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownPais" data-bs-toggle="dropdown" aria-expanded="false">
+                    Configuração
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownPais">
+                    <li>
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalInsertPais">
+                            Adicionar países
+                        </button>
+                    </li>
+                    <li>
+                        <form action="include/pais/planilhaPais.php" method="post">
+                            <input type="submit" class="dropdown-item" name="exportPais" value="Exportar">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <hr>
     </div>
 </div>

@@ -1,11 +1,34 @@
-<!-- <div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center">
     <div class="container">
-        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalInsertPais">
-            Adicionar Cidades
-        </button>
+        <h3>Tabela de nacionalidades</h3>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="container">
+        <hr>
+        <div class="row justify-content-start">
+            <div class="dropdown">
+                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownPais" data-bs-toggle="dropdown" aria-expanded="false">
+                    Configuração
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownPais">
+                    <li>
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#">
+                            Adicionar nacionalidades
+                        </button>
+                    </li>
+                    <li>
+                        <form action="" method="post">
+                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <hr>
     </div>
-</div> -->
+</div>
 
 <div class="d-flex justify-content-center">
     <div class="container">
@@ -34,20 +57,18 @@
             <tbody>
                 <td><?php echo($IdNac)?></td>
                 <td><?php echo($descNac)?></td>
-                <!-- <td>
+                <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#modalEditPais" data-bs-whateverPais="<?=$IdPais;?>"
-                            data-bs-whateverNome="<?=$nomePais;?>">
+                            data-bs-target="#" data-bs-whatever="">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#modalDelPais" data-bs-whateverPais="<?=$IdPais;?>"
-                            data-bs-whateverNome="<?=$nomePais;?>">
+                            data-bs-target="#" data-bs-whatever="">
                             Excluir
                         </button>
                     </form>
-                </td> -->
+                </td>
             </tbody>
 
             <?php } ?>
