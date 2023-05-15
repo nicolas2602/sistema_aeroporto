@@ -19,30 +19,21 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Cidade</th>
-                    <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Descrição cargo</th>
                 </tr>
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
-                            from cidade as city
-                            left join pais as country
-                            on city.fk_IdPais = country.IdPais;";
-
-                $query_city = mysqli_query($conexao, $cidade);
-                while($city = mysqli_fetch_assoc($query_city)){
-                    $IdCidade = $city['IdCidade'];
-                    $nomeCidade = $city['nomeCidade'];
-                    $pais = $city['nomePais'];
-                
+                $queryCargo = mysqli_query($conexao, "select * from cargo;");
+                while($cargo = mysqli_fetch_assoc($queryCargo)){
+                    $IdCargo = $cargo['IdCargo'];
+                    $descCargo = $cargo['descCargo'];
+            
             ?>
 
             <tbody>
-                <td><?php echo($IdCidade)?></td>
-                <td><?php echo($nomeCidade) ?></td>
-                <td><?php echo($pais) ?></td>
+                <td><?php echo($IdCargo)?></td>
+                <td><?php echo($descCargo)?></td>
                 <!-- <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 

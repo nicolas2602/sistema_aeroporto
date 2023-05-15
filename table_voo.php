@@ -19,30 +19,48 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Cidade</th>
-                    <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Aeroporto Saída</th>
+                    <th scope="col">Aeroporto Destino</th>
+                    <th scope="col">Companhia aérea</th>
+                    <th scope="col">Horário de chegada</th>
+                    <th scope="col">Horário de saída</th>
                 </tr>
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
-                            from cidade as city
-                            left join pais as country
-                            on city.fk_IdPais = country.IdPais;";
+                $sqlVoo = "select IdVoo, airs.nomeAeroporto as aeroportoSaida,  aird.nomeAeroporto as aeroportoDestino,  
+                            nomeCompanhia, 
+                            ifnull(horarioChegada, 'Horário Indefinido') as horarioChegada, 
+                            ifnull(horarioSaida, 'Horário Indefinido') as horarioSaida
+                            from voo as v
 
-                $query_city = mysqli_query($conexao, $cidade);
-                while($city = mysqli_fetch_assoc($query_city)){
-                    $IdCidade = $city['IdCidade'];
-                    $nomeCidade = $city['nomeCidade'];
-                    $pais = $city['nomePais'];
-                
+                            left join aeroporto as aird
+                            on v.fk_IdAeroporto_Destino = aird.IdAeroporto
+
+                            left join aeroporto as airs
+                            on v.fk_IdAeroporto_Saida = airs.IdAeroporto
+
+                            right join companhia_aerea as ca 
+                            on v.fk_IdCompanhia = ca.IdCompanhia;";
+
+                $queryVoo = mysqli_query($conexao, $sqlVoo);
+                while($voo = mysqli_fetch_assoc($queryVoo)){
+                    $IdVoo = $voo['IdVoo'];
+                    $aeroportoSaida = $voo['aeroportoSaida'];
+                    $aeroportoDestino = $voo['aeroportoDestino'];
+                    $nomeComapanhia = $voo['nomeCompanhia'];
+                    $horarioChegada = $voo['horarioChegada'];
+                    $horarioSaida = $voo['horarioSaida'];
+            
             ?>
 
             <tbody>
-                <td><?php echo($IdCidade)?></td>
-                <td><?php echo($nomeCidade) ?></td>
-                <td><?php echo($pais) ?></td>
+                <td><?php echo($IdVoo)?></td>
+                <td><?php echo($aeroportoSaida)?></td>
+                <td><?php echo($aeroportoDestino)?></td>
+                <td><?php echo($nomeComapanhia)?></td>
+                <td><?php echo($horarioChegada)?></td>
+                <td><?php echo($horarioSaida)?></td>
                 <!-- <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 

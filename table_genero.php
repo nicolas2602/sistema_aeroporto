@@ -19,30 +19,21 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Cidade</th>
-                    <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Descrição gênero</th>
                 </tr>
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
-                            from cidade as city
-                            left join pais as country
-                            on city.fk_IdPais = country.IdPais;";
-
-                $query_city = mysqli_query($conexao, $cidade);
-                while($city = mysqli_fetch_assoc($query_city)){
-                    $IdCidade = $city['IdCidade'];
-                    $nomeCidade = $city['nomeCidade'];
-                    $pais = $city['nomePais'];
-                
+                $queryGen = mysqli_query($conexao, "select * from genero;");
+                while($gen = mysqli_fetch_assoc($queryGen)){
+                    $IdGenero = $gen['IdGenero'];
+                    $descGenero = $gen['descGenero'];
+            
             ?>
 
             <tbody>
-                <td><?php echo($IdCidade)?></td>
-                <td><?php echo($nomeCidade) ?></td>
-                <td><?php echo($pais) ?></td>
+                <td><?php echo($IdGenero)?></td>
+                <td><?php echo($descGenero)?></td>
                 <!-- <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 

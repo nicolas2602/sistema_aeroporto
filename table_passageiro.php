@@ -19,30 +19,41 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Cidade</th>
-                    <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Nome do Passageiro</th>
+                    <th scope="col">Data de Nascimento</th>
+                    <th scope="col">Gênero</th>
+                    <th scope="col">Avião</th>
                 </tr>
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
-                            from cidade as city
-                            left join pais as country
-                            on city.fk_IdPais = country.IdPais;";
+                $sqlPass = "select IdPassageiro, nomePassageiro, 
+                            DATE_FORMAT(dataNascimento, '%d/%m/%Y') as dataNascimento,
+                            descGenero, fk_IdAviao
+                            from passageiro as ps 
 
-                $query_city = mysqli_query($conexao, $cidade);
-                while($city = mysqli_fetch_assoc($query_city)){
-                    $IdCidade = $city['IdCidade'];
-                    $nomeCidade = $city['nomeCidade'];
-                    $pais = $city['nomePais'];
-                
+                            inner join genero as gen 
+                            on ps.fk_IdGenero = gen.IdGenero
+
+                            inner join aviao as av 
+                            on ps.fk_IdAviao = av.IdAviao;";
+
+                $queryPass = mysqli_query($conexao, $sqlPass);
+                while($pass = mysqli_fetch_assoc($queryPass)){
+                    $IdPass = $pass['IdPassageiro'];
+                    $nomePass = $pass['nomePassageiro'];
+                    $dataNasc = $pass['dataNascimento'];
+                    $gen = $pass['descGenero'];
+                    $aviao = $pass['fk_IdAviao'];
+            
             ?>
 
             <tbody>
-                <td><?php echo($IdCidade)?></td>
-                <td><?php echo($nomeCidade) ?></td>
-                <td><?php echo($pais) ?></td>
+                <td><?php echo($IdPass)?></td>
+                <td><?php echo($nomePass)?></td>
+                <td><?php echo($dataNasc)?></td>
+                <td><?php echo($gen)?></td>
+                <td><?php echo($aviao)?></td>
                 <!-- <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 

@@ -19,30 +19,23 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Cidade</th>
-                    <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Aeroporto</th>
                 </tr>
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
-                            from cidade as city
-                            left join pais as country
-                            on city.fk_IdPais = country.IdPais;";
+                $companhia = "select * from companhia_aerea";
 
-                $query_city = mysqli_query($conexao, $cidade);
-                while($city = mysqli_fetch_assoc($query_city)){
-                    $IdCidade = $city['IdCidade'];
-                    $nomeCidade = $city['nomeCidade'];
-                    $pais = $city['nomePais'];
+                $query_companhia = mysqli_query($conexao, $companhia);
+                while($c = mysqli_fetch_assoc($query_companhia)){
+                    $IdCompanhia = $c['IdCompanhia'];
+                    $nomeComapanhia = $c['nomeCompanhia'];
                 
             ?>
 
             <tbody>
-                <td><?php echo($IdCidade)?></td>
-                <td><?php echo($nomeCidade) ?></td>
-                <td><?php echo($pais) ?></td>
+                <td><?php echo($IdCompanhia)?></td>
+                <td><?php echo($nomeComapanhia)?></td>
                 <!-- <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 

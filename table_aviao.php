@@ -19,30 +19,33 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Cidade</th>
-                    <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Quantidade de Assento</th>
+                    <th scope="col">Tipo de Assento</th>
+                    <th scope="col">Companhia aérea</th>
                 </tr>
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
-                            from cidade as city
-                            left join pais as country
-                            on city.fk_IdPais = country.IdPais;";
+                $sqlAviao = "select IdAviao, qtdAssento, tipoAssento, nomeCompanhia
+                            from aviao as av 
+                            inner join companhia_aerea as ca 
+                            on av.fk_IdCompanhia = ca.IdCompanhia;";
 
-                $query_city = mysqli_query($conexao, $cidade);
-                while($city = mysqli_fetch_assoc($query_city)){
-                    $IdCidade = $city['IdCidade'];
-                    $nomeCidade = $city['nomeCidade'];
-                    $pais = $city['nomePais'];
-                
+                $queryAviao = mysqli_query($conexao, $sqlAviao );
+                while($aviao = mysqli_fetch_assoc($queryAviao)){
+                    $IdAvoo = $aviao['IdAviao'];
+                    $qtd = $aviao['qtdAssento'];
+                    $tipo = $aviao['tipoAssento'];
+                    $companhia = $aviao['nomeCompanhia'];
+            
             ?>
 
             <tbody>
-                <td><?php echo($IdCidade)?></td>
-                <td><?php echo($nomeCidade) ?></td>
-                <td><?php echo($pais) ?></td>
+                <td><?php echo($IdAvoo)?></td>
+                <td><?php echo($qtd)?></td>
+                <td><?php echo($tipo)?></td>
+                <td><?php echo($companhia)?></td>
+
                 <!-- <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 

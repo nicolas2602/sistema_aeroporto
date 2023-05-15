@@ -23,9 +23,31 @@
         <div class="container">
             <div class="d-flex justify-content-evenly">
                 <form method="post">
-                    <input type="submit" class="btn btn-danger" value="Fechar" data-bs-toggle="modal" name="fechar">
-                    <input type="submit" class="btn btn-success" value="Mostrar os países" name="showPais">
-                    <input type="submit" class="btn btn-primary" value="Mostrar as cidades" name="showCidade">
+                    <input type="submit" class="btn btn-danger btn-sm" value="Fechar" data-bs-toggle="modal" name="fechar">
+                    <input type="submit" class="btn btn-success btn-sm" value="Mostrar os países" name="showPais">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Mostrar as cidades" name="showCidade">
+                    <input type="submit" class="btn btn-warning btn-sm" value="Mostrar aeroporto" name="showAeroporto">
+                    <input type="submit" class="btn btn-secondary btn-sm" value="Mostrar companhia aérea" name="showCompanhia">
+                    <input type="submit" class="btn btn-info btn-sm" value="Mostrar voos" name="showVoo">
+                </form>
+            </div>
+            <br>
+            <div class="d-flex justify-content-evenly">
+                <form method="post">
+                    <input type="submit" class="btn btn-danger btn-sm" value="Mostrar aviões" name="showAviao">
+                    <input type="submit" class="btn btn-success btn-sm" value="Mostrar cargos" name="showCargo">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Mostrar gêneros" name="showGen">
+                    <input type="submit" class="btn btn-warning btn-sm" value="Mostrar funcionários" name="showFunc">
+                    <input type="submit" class="btn btn-secondary btn-sm" value="Mostrar passageiros" name="showPass">
+                    <input type="submit" class="btn btn-info btn-sm" value="Mostrar nacionalidades" name="showNac">
+                </form>
+            </div>
+            <br>
+            <div class="d-flex justify-content-evenly">
+                <form method="post">
+                    <input type="submit" class="btn btn-dark btn-sm" value="Mostrar informações dos passageiros" name="showPn">
+                    <input type="submit" class="btn btn-danger btn-sm" value="Mostrar tipo de bagagens" name="showTipo">
+                    <input type="submit" class="btn btn-success btn-sm" value="Mostrar as bagagens dos passageiros" name="showBag">
                 </form>
             </div>
             <hr>
@@ -38,8 +60,31 @@
             include("table_pais.php");
         }else if(isset($_POST['showCidade'])){
             include("table_cidade.php");
-        }
-        else{
+        }else if(isset($_POST['showAeroporto'])){
+            include("table_aeroporto.php");
+        }else if(isset($_POST['showCompanhia'])){
+            include("table_companhia.php");
+        }else if(isset($_POST['showVoo'])){
+            include("table_voo.php");
+        }else if(isset($_POST['showAviao'])){
+            include("table_aviao.php");
+        }else if(isset($_POST['showCargo'])){
+            include("table_cargo.php");
+        }else if(isset($_POST['showGen'])){
+            include("table_genero.php");
+        }else if(isset($_POST['showFunc'])){
+            include("table_funcionario.php");
+        }else if(isset($_POST['showPass'])){
+            include("table_passageiro.php");
+        }else if(isset($_POST['showNac'])){
+            include("table_nacionalidade.php");
+        }else if(isset($_POST['showPn'])){
+            include("table_passageiro_nac.php");
+        }else if(isset($_POST['showTipo'])){
+            include("table_tipo_bagagem.php");
+        }else if(isset($_POST['showBag'])){
+            include("table_bagagem.php");
+        }else{
             echo("
                 <div class='d-flex justify-content-center'>
                     <div class='container'>

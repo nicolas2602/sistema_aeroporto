@@ -19,30 +19,29 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Cidade</th>
-                    <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Aeroporto</th>
+                    <th>Cidade</th>
                 </tr>
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
-                            from cidade as city
-                            left join pais as country
-                            on city.fk_IdPais = country.IdPais;";
+                $air = "select IdAeroporto, nomeAeroporto, nomeCidade
+                            from aeroporto as a
+                            inner join cidade as city
+                            on a.fk_IdCidade = city.IdCidade;";
 
-                $query_city = mysqli_query($conexao, $cidade);
-                while($city = mysqli_fetch_assoc($query_city)){
-                    $IdCidade = $city['IdCidade'];
-                    $nomeCidade = $city['nomeCidade'];
-                    $pais = $city['nomePais'];
+                $query_air = mysqli_query($conexao, $air);
+                while($a = mysqli_fetch_assoc($query_air)){
+                    $IdAeroporto = $a['IdAeroporto'];
+                    $nomeAeroporto = $a['nomeAeroporto'];
+                    $nomeCidade = $a['nomeCidade'];
                 
             ?>
 
             <tbody>
-                <td><?php echo($IdCidade)?></td>
+                <td><?php echo($IdAeroporto)?></td>
+                <td><?php echo($nomeAeroporto)?></td>
                 <td><?php echo($nomeCidade) ?></td>
-                <td><?php echo($pais) ?></td>
                 <!-- <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 

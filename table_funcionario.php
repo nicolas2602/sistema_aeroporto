@@ -19,30 +19,39 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Cidade</th>
-                    <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Nome do Funcionário</th>
+                    <th scope="col">Gênero</th>
+                    <th scope="col">Descrição do cargo</th>
+                    <th scope="col">Avião</th>
                 </tr>
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
-                            from cidade as city
-                            left join pais as country
-                            on city.fk_IdPais = country.IdPais;";
+                $sqlFunc = "select IdFuncionario, nomeFuncionario, descGenero, descCargo, fk_IdAviao
+                            from funcionario as f
 
-                $query_city = mysqli_query($conexao, $cidade);
-                while($city = mysqli_fetch_assoc($query_city)){
-                    $IdCidade = $city['IdCidade'];
-                    $nomeCidade = $city['nomeCidade'];
-                    $pais = $city['nomePais'];
-                
+                            inner join genero as gen
+                            on f.fk_IdGenero = gen.IdGenero
+
+                            inner join cargo as car
+                            on f.fk_IdCargo = car.IdCargo;";
+
+                $queryFunc = mysqli_query($conexao, $sqlFunc);
+                while($func = mysqli_fetch_assoc($queryFunc)){
+                    $IdFunc = $func['IdFuncionario'];
+                    $nomeFunc = $func['nomeFuncionario'];
+                    $gen = $func['descGenero'];
+                    $cargo = $func['descCargo'];
+                    $fkIdAviao = $func['fk_IdAviao'];
+            
             ?>
 
             <tbody>
-                <td><?php echo($IdCidade)?></td>
-                <td><?php echo($nomeCidade) ?></td>
-                <td><?php echo($pais) ?></td>
+                <td><?php echo($IdFunc)?></td>
+                <td><?php echo($nomeFunc)?></td>
+                <td><?php echo($gen)?></td>
+                <td><?php echo($cargo)?></td>
+                <td><?php echo($fkIdAviao)?></td>
                 <!-- <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 

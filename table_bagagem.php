@@ -19,30 +19,34 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Cidade</th>
-                    <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Peso da bagagem</th>
+                    <th scope="col">Bagagem</th>
+                    <th scope="col">Nome do passageiro</th>
                 </tr>
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
-                            from cidade as city
-                            left join pais as country
-                            on city.fk_IdPais = country.IdPais;";
+                $sqlBag = "select IdBagagem, pesoBagagem, nomeBagagem, nomePassageiro
+                            from bagagem as bg 
+                            left join passageiro as ps
+                            on bg.fk_IdPassageiro = ps.IdPassageiro
+                            inner join tipo_bagagem as tb 
+                            on bg.fk_IdTipoBagagem = tb.IdTipoBagagem;";
 
-                $query_city = mysqli_query($conexao, $cidade);
-                while($city = mysqli_fetch_assoc($query_city)){
-                    $IdCidade = $city['IdCidade'];
-                    $nomeCidade = $city['nomeCidade'];
-                    $pais = $city['nomePais'];
-                
+                $queryBag = mysqli_query($conexao, $sqlBag);
+                while($bag = mysqli_fetch_assoc($queryBag)){
+                    $IdBag = $bag['IdBagagem'];
+                    $peso = $bag['pesoBagagem'];
+                    $bagagem = $bag['nomeBagagem'];
+                    $passageiro = $bag['nomePassageiro'];
+            
             ?>
 
             <tbody>
-                <td><?php echo($IdCidade)?></td>
-                <td><?php echo($nomeCidade) ?></td>
-                <td><?php echo($pais) ?></td>
+                <td><?php echo($IdBag)?></td>
+                <td><?php echo($peso)?></td>
+                <td><?php echo($bagagem)?></td>
+                <td><?php echo($passageiro)?></td>
                 <!-- <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 

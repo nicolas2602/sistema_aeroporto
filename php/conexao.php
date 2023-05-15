@@ -1,8 +1,8 @@
 <?php 
 
-    $nome_servidor = "localhost";
+    $nome_servidor = "db";
     $usuario = "root";
-    $senha = "";
+    $senha = "1234";
     $bd = "sistema_aeroporto";
 
     $conexao = mysqli_connect($nome_servidor, $usuario, $senha, $bd);
