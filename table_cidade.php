@@ -49,7 +49,7 @@
             </thead>
 
             <?php
-                $cidade = "select IdCidade, nomeCidade, nomePais
+                $cidade = "select IdCidade, nomeCidade, nomePais, fk_IdPais
                             from cidade as city
                             left join pais as country
                             on city.fk_IdPais = country.IdPais;";
@@ -58,6 +58,7 @@
                 while($city = mysqli_fetch_assoc($query_city)){
                     $IdCidade = $city['IdCidade'];
                     $nomeCidade = $city['nomeCidade'];
+                    $idPais = $city['fk_IdPais'];
                     $pais = $city['nomePais'];
                 
             ?>
@@ -69,7 +70,8 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpCidade" data-bs-whateverId="<?=$IdCidade?>"
+                            data-bs-whateverNome="<?=$nomeCidade?>" data-bs-whateverFk="<?=$idPais?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
@@ -87,26 +89,29 @@
 </div>
 
 <?php include("include/cidade/modalInsertCidade.php"); ?>
-<?php include("include/pais/modalUpPais.php"); ?>
-<?php include("include/pais/modalDelPais.php"); ?>
+<?php include("include/cidade/modalUpCidade.php"); ?>
+<?php include("include/cidade/modalDelCidade.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpCidade = document.getElementById('modalUpCidade')
+        modalUpCidade.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idCidade = button.getAttribute('data-bs-whateverId')
+        var nomeCidade = button.getAttribute('data-bs-whateverNome')
+        var fkIdPais = button.getAttribute('data-bs-whateverFk')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpCidade.querySelector('.modal-title')
+        var idInput = modalUpCidade.querySelector('#idCidade')
+        var cidadeInput = modalUpCidade.querySelector('#nomeCidade')
+        var fkInput = modalUpCidade.querySelector('#idPais')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID da Cidade: ' + idCidade
+        idInput.value = idCidade
+        cidadeInput.value = nomeCidade
+        fkInput.value = fkIdPais
     })
     
     // Deletar País

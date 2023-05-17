@@ -15,7 +15,7 @@
                     <div class="col">
                       <label for="">Selecione a cidade:</label>
                       <select class="form-select" aria-label="Default select example" name="idCidade" required>
-                        <option selected></option required>
+                      <option selected>Selecione uma cidade...</option required>
                         <?php 
                           $query = mysqli_query($conexao, "select * from cidade");
                           while($city = mysqli_fetch_assoc($query)){

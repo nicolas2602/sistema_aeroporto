@@ -4,6 +4,8 @@
     include("bd_pais/deletePais.php");
 
     include("bd_cidade/insertCidade.php");
+    include("bd_cidade/updateCidade.php");
 
     include("bd_aeroporto/insertAero.php");
+    include("bd_aeroporto/updateAero.php");
 ?>

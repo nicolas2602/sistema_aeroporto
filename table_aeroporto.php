@@ -48,7 +48,7 @@
             </thead>
 
             <?php
-                $air = "select IdAeroporto, nomeAeroporto, nomeCidade
+                $air = "select IdAeroporto, nomeAeroporto, nomeCidade, fk_IdCidade
                             from aeroporto as a
                             inner join cidade as city
                             on a.fk_IdCidade = city.IdCidade;";
@@ -57,6 +57,7 @@
                 while($a = mysqli_fetch_assoc($query_air)){
                     $IdAeroporto = $a['IdAeroporto'];
                     $nomeAeroporto = $a['nomeAeroporto'];
+                    $idCidade = $a['fk_IdCidade'];
                     $nomeCidade = $a['nomeCidade'];
                 
             ?>
@@ -68,7 +69,8 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpAero" data-bs-whateverId="<?=$IdAeroporto?>"
+                            data-bs-whateverNome="<?=$nomeAeroporto?>" data-bs-whateverCity="<?=$idCidade?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
@@ -85,27 +87,30 @@
     </div>
 </div>
 
-<?php include("include/aeroporto/modalInsertCidade.php"); ?>
-<?php include("include/pais/modalUpPais.php"); ?>
+<?php include("include/aeroporto/modalInsertAero.php"); ?>
+<?php include("include/aeroporto/modalUpAero.php"); ?>
 <?php include("include/pais/modalDelPais.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalEditAero = document.getElementById('modalUpAero')
+        modalEditAero.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idAero = button.getAttribute('data-bs-whateverId')
+        var nomeAero = button.getAttribute('data-bs-whateverNome')
+        var city = button.getAttribute('data-bs-whateverCity')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalEditAero.querySelector('.modal-title')
+        var idInput = modalEditAero.querySelector('#idAero')
+        var nomeInput = modalEditAero.querySelector('#nomeAero')
+        var cityInput = modalEditAero.querySelector('#idCidade')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID do Aeroporto: ' + idAero
+        idInput.value = idAero
+        nomeInput.value = nomeAero
+        cityInput.value = city
     })
     
     // Deletar País
