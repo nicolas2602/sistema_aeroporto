@@ -38,13 +38,13 @@
 
 <div class="d-flex justify-content-center">
     <div class="container">
-        <table class="table text-center">
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Cidade</th>
                     <th>País</th>
-                    <!-- <th></th> -->
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
 
@@ -75,7 +75,8 @@
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelCidade" data-bs-whateverId="<?=$IdCidade?>"
+                            data-bs-whateverNome="<?=$nomeCidade?>" data-bs-whateverFk="<?=$idPais?>">
                             Excluir
                         </button>
                     </form>
@@ -115,20 +116,23 @@
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelCidade = document.getElementById('modalDelCidade')
+        modalDelCidade.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idCidade = button.getAttribute('data-bs-whateverId')
+        var nomeCidade = button.getAttribute('data-bs-whateverNome')
+        var fkIdPais = button.getAttribute('data-bs-whateverFk')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelCidade.querySelector('.modal-title')
+        var idInput = modalDelCidade.querySelector('#idCidade')
+        var cidadeInput = modalDelCidade.querySelector('#nomeCidade')
+        var fkInput = modalDelCidade.querySelector('#idPais')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Nome da cidade: ' + nomeCidade
+        idInput.value = idCidade
+        cidadeInput.value = nomeCidade
+        fkInput.value = fkIdPais
     })
 
 </script>

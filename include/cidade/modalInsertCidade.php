@@ -15,7 +15,7 @@
                     <div class="col">
                       <label for="">Selecione o país:</label>
                       <select class="form-select" aria-label="Default select example" name="idPais" required>
-                        <option selected>Selecione um país...</option required>
+                        <option selected disabled value="">Selecione...</option>
                         <?php 
                           $query = mysqli_query($conexao, "select * from pais");
                           while($pais = mysqli_fetch_assoc($query)){

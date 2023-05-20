@@ -38,12 +38,13 @@
 
 <div class="d-flex justify-content-center">
     <div class="container">
-        <table class="table text-center">
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Aeroporto</th>
                     <th>Cidade</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
 
@@ -74,7 +75,8 @@
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelAero" data-bs-whateverId="<?=$IdAeroporto?>"
+                            data-bs-whateverNome="<?=$nomeAeroporto?>" data-bs-whateverCity="<?=$idCidade?>">
                             Excluir
                         </button>
                     </form>
@@ -89,7 +91,7 @@
 
 <?php include("include/aeroporto/modalInsertAero.php"); ?>
 <?php include("include/aeroporto/modalUpAero.php"); ?>
-<?php include("include/pais/modalDelPais.php"); ?>
+<?php include("include/aeroporto/modalDelAero.php"); ?>
     
 <script type="text/javascript">
 
@@ -114,20 +116,23 @@
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelAero = document.getElementById('modalDelAero')
+        modalDelAero.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idAero = button.getAttribute('data-bs-whateverId')
+        var nomeAero = button.getAttribute('data-bs-whateverNome')
+        var city = button.getAttribute('data-bs-whateverCity')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelAero.querySelector('.modal-title')
+        var idInput = modalDelAero.querySelector('#idAero')
+        var nomeInput = modalDelAero.querySelector('#nomeAero')
+        var cityInput = modalDelAero.querySelector('#idCidade')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Nome do aeroporto: ' + nomeAero
+        idInput.value = idAero
+        nomeInput.value = nomeAero
+        cityInput.value = city
     })
 
 </script>

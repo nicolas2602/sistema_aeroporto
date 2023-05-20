@@ -16,7 +16,7 @@
                     <div class="col">
                       <label for="">Selecione o país:</label>
                       <select class="form-select" aria-label="Default select example" name="idPais" id="idPais" required>
-                        <option value="" selected></option>
+                        <option selected disabled value="">Selecione...</option>
                         <?php 
                             $sql = "select * from pais";
 

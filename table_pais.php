@@ -38,12 +38,12 @@
 
 <div class="d-flex justify-content-center">
     <div class="container">
-        <table class="table text-center">
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">País</th>
-                    <th></th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
 

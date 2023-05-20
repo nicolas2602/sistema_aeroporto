@@ -125,7 +125,7 @@ select IdVoo, airs.nomeAeroporto as saida,  aird.nomeAeroporto as destino, nomeC
     left join aeroporto as airs
     on v.fk_IdAeroporto_Saida = airs.IdAeroporto
     -- Nome da companhia aérea
-    right join companhia_aerea as ca 
+    left join companhia_aerea as ca 
     on v.fk_IdCompanhia = ca.IdCompanhia;
 
 insert into voo(fk_IdAeroporto_Saida, fk_IdAeroporto_Destino, fk_IdCompanhia, horarioChegada, horarioSaida)

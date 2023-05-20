@@ -14,7 +14,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownPais">
                     <li>
-                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#">
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalInsertAviao">
                             Adicionar aviões
                         </button>
                     </li>
@@ -39,13 +39,14 @@
 
 <div class="d-flex justify-content-center">
     <div class="container">
-        <table class="table text-center">
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Quantidade de Assento</th>
                     <th scope="col">Tipo de Assento</th>
                     <th scope="col">Companhia aérea</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
 
@@ -89,9 +90,7 @@
     </div>
 </div>
 
-<?php include("include/pais/modalInsertPais.php"); ?>
-<?php include("include/pais/modalUpPais.php"); ?>
-<?php include("include/pais/modalDelPais.php"); ?>
+<?php include("include/aviao/modalInsertAviao.php"); ?>
     
 <script type="text/javascript">
 

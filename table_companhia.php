@@ -14,7 +14,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownPais">
                     <li>
-                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#">
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalInsertComp">
                             Adicionar companhia aérea
                         </button>
                     </li>
@@ -38,11 +38,12 @@
 
 <div class="d-flex justify-content-center">
     <div class="container">
-        <table class="table text-center">
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Aeroporto</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
 
@@ -62,11 +63,13 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpComp" data-bs-whateverId="<?=$IdCompanhia?>" 
+                            data-bs-whateverNome="<?=$nomeComapanhia?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelComp" data-bs-whateverId="<?=$IdCompanhia?>" 
+                            data-bs-whateverNome="<?=$nomeComapanhia?>">
                             Excluir
                         </button>
                     </form>
@@ -79,44 +82,44 @@
     </div>
 </div>
 
-<?php include("include/pais/modalInsertPais.php"); ?>
-<?php include("include/pais/modalUpPais.php"); ?>
-<?php include("include/pais/modalDelPais.php"); ?>
+<?php include("include/companhia/modalInsertComp.php"); ?>
+<?php include("include/companhia/modalUpComp.php"); ?>
+<?php include("include/companhia/modalDelComp.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpComp = document.getElementById('modalUpComp')
+        modalUpComp.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idComp = button.getAttribute('data-bs-whateverId')
+        var nomeComp = button.getAttribute('data-bs-whateverNome')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpComp.querySelector('.modal-title')
+        var idInput = modalUpComp.querySelector('#idCompanhia')
+        var compInput = modalUpComp.querySelector('#nomeCompanhia')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID da Companhia: ' + idComp
+        idInput.value = idComp
+        compInput.value = nomeComp
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelComp = document.getElementById('modalDelComp')
+        modalDelComp.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idComp = button.getAttribute('data-bs-whateverId')
+        var nomeComp = button.getAttribute('data-bs-whateverNome')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelComp.querySelector('.modal-title')
+        var idInput = modalDelComp.querySelector('#idCompanhia')
+        var compInput = modalDelComp.querySelector('#nomeCompanhia')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Nome da companhia: ' + nomeComp
+        idInput.value = idComp
+        compInput.value = nomeComp
     })
 
 </script>

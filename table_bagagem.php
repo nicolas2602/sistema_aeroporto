@@ -14,7 +14,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownPais">
                     <li>
-                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#">
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalInsertBag">
                             Adicionar bagagens dos passageiros
                         </button>
                     </li>
@@ -38,13 +38,14 @@
 
 <div class="d-flex justify-content-center">
     <div class="container">
-        <table class="table text-center">
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Peso da bagagem</th>
                     <th scope="col">Bagagem</th>
                     <th scope="col">Nome do passageiro</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
 
@@ -90,9 +91,7 @@
     </div>
 </div>
 
-<?php include("include/pais/modalInsertPais.php"); ?>
-<?php include("include/pais/modalUpPais.php"); ?>
-<?php include("include/pais/modalDelPais.php"); ?>
+<?php include("include/bagagem/modalInsertBag.php"); ?>
     
 <script type="text/javascript">
 

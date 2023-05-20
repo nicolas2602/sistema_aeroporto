@@ -14,7 +14,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownPais">
                     <li>
-                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#">
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalInsertVoo">
                             Adicionar voos
                         </button>
                     </li>
@@ -38,7 +38,7 @@
 
 <div class="d-flex justify-content-center">
     <div class="container">
-        <table class="table text-center">
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -47,12 +47,13 @@
                     <th scope="col">Companhia aérea</th>
                     <th scope="col">Horário de chegada</th>
                     <th scope="col">Horário de saída</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
 
             <?php
                 $sqlVoo = "select IdVoo, airs.nomeAeroporto as aeroportoSaida,  aird.nomeAeroporto as aeroportoDestino,  
-                            nomeCompanhia, 
+                            nomeCompanhia, fk_IdAeroporto_Destino, fk_IdAeroporto_Saida, fk_IdCompanhia,
                             ifnull(horarioChegada, 'Horário Indefinido') as horarioChegada, 
                             ifnull(horarioSaida, 'Horário Indefinido') as horarioSaida
                             from voo as v
@@ -63,7 +64,7 @@
                             left join aeroporto as airs
                             on v.fk_IdAeroporto_Saida = airs.IdAeroporto
 
-                            right join companhia_aerea as ca 
+                            left join companhia_aerea as ca 
                             on v.fk_IdCompanhia = ca.IdCompanhia;";
 
                 $queryVoo = mysqli_query($conexao, $sqlVoo);
@@ -87,11 +88,15 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpVoo" data-bs-whateverId="<?=$IdVoo?>" data-bs-whateverAeroSaida="<?=$voo['fk_IdAeroporto_Saida']?>"
+                            data-bs-whateverAeroDest="<?=$voo['fk_IdAeroporto_Destino']?>" data-bs-whateverComp="<?=$voo['fk_IdCompanhia']?>"
+                            data-bs-whateverHorCheg="<?=$horarioChegada?>" data-bs-whateverHorSaida="<?=$horarioSaida?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelVoo" data-bs-whateverId="<?=$IdVoo?>" data-bs-whateverAeroSaida="<?=$voo['fk_IdAeroporto_Saida']?>"
+                            data-bs-whateverAeroDest="<?=$voo['fk_IdAeroporto_Destino']?>" data-bs-whateverComp="<?=$voo['fk_IdCompanhia']?>"
+                            data-bs-whateverHorCheg="<?=$horarioChegada?>" data-bs-whateverHorSaida="<?=$horarioSaida?>">
                             Excluir
                         </button>
                     </form>
@@ -104,44 +109,68 @@
     </div>
 </div>
 
-<?php include("include/pais/modalInsertPais.php"); ?>
-<?php include("include/pais/modalUpPais.php"); ?>
-<?php include("include/pais/modalDelPais.php"); ?>
+<?php include("include/voo/modalInsertVoo.php"); ?>
+<?php include("include/voo/modalUpVoo.php"); ?>
+<?php include("include/voo/modalDelVoo.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpVoo = document.getElementById('modalUpVoo')
+        modalUpVoo.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idVoo = button.getAttribute('data-bs-whateverId')
+        var aeroSaida = button.getAttribute('data-bs-whateverAeroSaida')
+        var aeroDest = button.getAttribute('data-bs-whateverAeroDest')
+        var companhia = button.getAttribute('data-bs-whateverComp')
+        var horarioCheg = button.getAttribute('data-bs-whateverHorCheg')
+        var horarioSaida = button.getAttribute('data-bs-whateverHorSaida');
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpVoo.querySelector('.modal-title')
+        var idInput = modalUpVoo.querySelector('#idVoo')
+        var aeroSaidaInput = modalUpVoo.querySelector('#fkSaida')
+        var aeroDestInput = modalUpVoo.querySelector('#fkDest')
+        var companhiaInput = modalUpVoo.querySelector('#fkComp')
+        var horarioSaidaInput = modalUpVoo.querySelector('#horarioSaida')
+        var horarioChegInput = modalUpVoo.querySelector('#horarioCheg')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID do voo: ' + idVoo
+        idInput.value = idVoo
+        aeroSaidaInput.value = aeroSaida
+        aeroDestInput.value = aeroDest
+        companhiaInput.value = companhia
+        horarioSaidaInput.value = horarioSaida
+        horarioChegInput.value = horarioCheg 
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelVoo = document.getElementById('modalDelVoo')
+        modalDelVoo.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idVoo = button.getAttribute('data-bs-whateverId')
+        var aeroSaida = button.getAttribute('data-bs-whateverAeroSaida')
+        var aeroDest = button.getAttribute('data-bs-whateverAeroDest')
+        var companhia = button.getAttribute('data-bs-whateverComp')
+        var horarioCheg = button.getAttribute('data-bs-whateverHorCheg')
+        var horarioSaida = button.getAttribute('data-bs-whateverHorSaida');
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelVoo.querySelector('.modal-title')
+        var idInput = modalDelVoo.querySelector('#idVoo')
+        var aeroSaidaInput = modalDelVoo.querySelector('#fkSaida')
+        var aeroDestInput = modalDelVoo.querySelector('#fkDest')
+        var companhiaInput = modalDelVoo.querySelector('#fkComp')
+        var horarioSaidaInput = modalDelVoo.querySelector('#horarioSaida')
+        var horarioChegInput = modalDelVoo.querySelector('#horarioCheg')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID do voo: ' + idVoo
+        idInput.value = idVoo
+        aeroSaidaInput.value = aeroSaida
+        aeroDestInput.value = aeroDest
+        companhiaInput.value = companhia
+        horarioSaidaInput.value = horarioSaida
+        horarioChegInput.value = horarioCheg 
     })
 
 </script>
