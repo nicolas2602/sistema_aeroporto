@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportVoo" value="Exportar">
                         </form>
                     </li>
                 </ul>

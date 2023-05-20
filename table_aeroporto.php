@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="include/aeroporto/planilhaAero.php" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportAero" value="Exportar">
                         </form>
                     </li>
                 </ul>
@@ -51,7 +51,7 @@
             <?php
                 $air = "select IdAeroporto, nomeAeroporto, nomeCidade, fk_IdCidade
                             from aeroporto as a
-                            inner join cidade as city
+                            left join cidade as city
                             on a.fk_IdCidade = city.IdCidade;";
 
                 $query_air = mysqli_query($conexao, $air);

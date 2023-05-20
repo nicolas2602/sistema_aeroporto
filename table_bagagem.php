@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportBag" value="Exportar">
                         </form>
                     </li>
                 </ul>
@@ -50,7 +50,8 @@
             </thead>
 
             <?php
-                $sqlBag = "select IdBagagem, pesoBagagem, nomeBagagem, nomePassageiro
+                $sqlBag = "select IdBagagem, pesoBagagem, nomeBagagem, nomePassageiro,
+                            fk_IdPassageiro, fk_IdTipoBagagem
                             from bagagem as bg 
                             left join passageiro as ps
                             on bg.fk_IdPassageiro = ps.IdPassageiro
@@ -74,7 +75,8 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpBag" data-bs-whateverId="<?=$IdBag?>" data-bs-whateverPeso="<?=$peso?>"
+                            data-bs-whateverTb="<?=$bag['fk_IdTipoBagagem']?>" data-bs-whateverPass="<?=$bag['fk_IdPassageiro']?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
@@ -92,41 +94,55 @@
 </div>
 
 <?php include("include/bagagem/modalInsertBag.php"); ?>
+<?php include("include/bagagem/modalUpBag.php"); ?>
+<?php include("include/bagagem/modalDelBag.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpBag = document.getElementById('modalUpBag')
+        modalUpBag.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idBag = button.getAttribute('data-bs-whateverId')
+        var peso = button.getAttribute('data-bs-whateverPeso')
+        var fktb = button.getAttribute('data-bs-whateverTb')
+        var fkpass = button.getAttribute('data-bs-whateverPass')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpBag.querySelector('.modal-title')
+        var idBagInput = modalUpBag.querySelector('#idBag')
+        var pesoInput = modalUpBag.querySelector('#peso')
+        var fkTipoInput = modalUpBag.querySelector('#fkTipo')
+        var fkPassInput = modalUpBag.querySelector('#fkPass')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID da bagagem: ' + idBag
+        idBagInput.value = idBag
+        pesoInput.value = peso
+        fkTipoInput.value = fktb 
+        fkPassInput.value = fkpass
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelBag. = document.getElementById('modalDelBag')
+        modalDelBag.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idBag = button.getAttribute('data-bs-whateverId')
+        var peso = button.getAttribute('data-bs-whateverPeso')
+        var fktb = button.getAttribute('data-bs-whateverTb')
+        var fkpass = button.getAttribute('data-bs-whateverPass')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelBag.querySelector('.modal-title')
+        var idBagInput = modalDelBag.querySelector('#idBag')
+        var pesoInput = modalDelBag.querySelector('#peso')
+        var fkTipoInput = modalDelBag.querySelector('#fkTipo')
+        var fkPassInput = modalDelBag.querySelector('#fkPass')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID da bagagem: ' + idBag
+        idBagInput.value = idBag
+        pesoInput.value = peso
+        fkTipoInput.value = fktb 
+        fkPassInput.value = fkpass
     })
 
 </script>

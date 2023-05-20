@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportPassag" value="Exportar">
                         </form>
                     </li>
                 </ul>
@@ -52,7 +52,7 @@
             <?php
                 $sqlPass = "select IdPassageiro, nomePassageiro, 
                             DATE_FORMAT(dataNascimento, '%d/%m/%Y') as dataNascimento,
-                            descGenero, fk_IdAviao
+                            descGenero, fk_IdGenero, fk_IdAviao
                             from passageiro as ps 
 
                             inner join genero as gen 
@@ -80,11 +80,15 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpPass" data-bs-whateverId="<?=$IdPass?>"
+                            data-bs-whateverNome="<?=$nomePass?>" data-bs-whateverData="<?=$dataNasc?>" 
+                            data-bs-whateverGen="<?=$pass['fk_IdGenero']?>" data-bs-whateverAviao="<?=$aviao?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelPass" data-bs-whateverId="<?=$IdPass?>"
+                            data-bs-whateverNome="<?=$nomePass?>" data-bs-whateverData="<?=$dataNasc?>" 
+                            data-bs-whateverGen="<?=$pass['fk_IdGenero']?>" data-bs-whateverAviao="<?=$aviao?>">
                             Excluir
                         </button>
                     </form>
@@ -98,41 +102,61 @@
 </div>
 
 <?php include("include/passageiro/modalInsertPass.php"); ?>
+<?php include("include/passageiro/modalUpPass.php"); ?>
+<?php include("include/passageiro/modalDelPass.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpPass = document.getElementById('modalUpPass')
+        modalUpPass.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var id = button.getAttribute('data-bs-whateverId')
+        var nome = button.getAttribute('data-bs-whateverNome')
+        var data = button.getAttribute('data-bs-whateverData')
+        var gen = button.getAttribute('data-bs-whateverGen')
+        var aviao = button.getAttribute('data-bs-whateverAviao')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpPass.querySelector('.modal-title')
+        var idInput = modalUpPass.querySelector('#idPass')
+        var nomeInput = modalUpPass.querySelector('#nomePass')
+        var dataInput = modalUpPass.querySelector('#dataNasc')
+        var genInput = modalUpPass.querySelector('#gen')
+        var aviaoInput = modalUpPass.querySelector('#aviao');
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID do passageiro: ' + id
+        idInput.value = id
+        nomeInput.value = nome
+        dataInput.value = data
+        genInput.value = gen
+        aviaoInput.value = aviao
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelPass = document.getElementById('modalDelPass')
+        modalDelPass.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var id = button.getAttribute('data-bs-whateverId')
+        var nome = button.getAttribute('data-bs-whateverNome')
+        var data = button.getAttribute('data-bs-whateverData')
+        var gen = button.getAttribute('data-bs-whateverGen')
+        var aviao = button.getAttribute('data-bs-whateverAviao')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelPass.querySelector('.modal-title')
+        var idInput = modalDelPass.querySelector('#idPass')
+        var nomeInput = modalDelPass.querySelector('#nomePass')
+        var dataInput = modalDelPass.querySelector('#dataNasc')
+        var genInput = modalDelPass.querySelector('#gen')
+        var aviaoInput = modalDelPass.querySelector('#aviao');
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Nome do passageiro: ' + nome
+        idInput.value = id
+        nomeInput.value = nome
+        dataInput.value = data
+        genInput.value = gen
+        aviaoInput.value = aviao
     })
 
 </script>

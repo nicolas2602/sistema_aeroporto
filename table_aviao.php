@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportAviao" value="Exportar">
                         </form>
                     </li>
                 </ul>
@@ -51,14 +51,14 @@
             </thead>
 
             <?php
-                $sqlAviao = "select IdAviao, qtdAssento, tipoAssento, nomeCompanhia
+                $sqlAviao = "select IdAviao, qtdAssento, tipoAssento, nomeCompanhia, fk_IdCompanhia
                             from aviao as av 
-                            inner join companhia_aerea as ca 
+                            left join companhia_aerea as ca 
                             on av.fk_IdCompanhia = ca.IdCompanhia;";
 
                 $queryAviao = mysqli_query($conexao, $sqlAviao );
                 while($aviao = mysqli_fetch_assoc($queryAviao)){
-                    $IdAvoo = $aviao['IdAviao'];
+                    $IdAviao = $aviao['IdAviao'];
                     $qtd = $aviao['qtdAssento'];
                     $tipo = $aviao['tipoAssento'];
                     $companhia = $aviao['nomeCompanhia'];
@@ -66,18 +66,22 @@
             ?>
 
             <tbody>
-                <td><?php echo($IdAvoo)?></td>
+                <td><?php echo($IdAviao)?></td>
                 <td><?php echo($qtd)?></td>
                 <td><?php echo($tipo)?></td>
                 <td><?php echo($companhia)?></td>
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpAviao" data-bs-whateverId="<?=$IdAviao?>"
+                            data-bs-whateverQtd="<?=$qtd?>" data-bs-whateverTipo="<?=$tipo?>" 
+                            data-bs-whateverComp="<?=$aviao['fk_IdCompanhia']?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelAviao" data-bs-whateverId="<?=$IdAviao?>"
+                            data-bs-whateverQtd="<?=$qtd?>" data-bs-whateverTipo="<?=$tipo?>" 
+                            data-bs-whateverComp="<?=$aviao['fk_IdCompanhia']?>">
                             Excluir
                         </button>
                     </form>
@@ -91,41 +95,55 @@
 </div>
 
 <?php include("include/aviao/modalInsertAviao.php"); ?>
+<?php include("include/aviao/modalUpAviao.php"); ?>
+<?php include("include/aviao/modalDelAviao.php"); ?>
     
 <script type="text/javascript">
 
-    // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    // Atualizar 
+    var modalUpAviao = document.getElementById('modalUpAviao')
+        modalUpAviao.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idAviao = button.getAttribute('data-bs-whateverId')
+        var qtd = button.getAttribute('data-bs-whateverQtd')
+        var tipo = button.getAttribute('data-bs-whateverTipo')
+        var companhia = button.getAttribute('data-bs-whateverComp')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpAviao.querySelector('.modal-title')
+        var idAviaoInput = modalUpAviao.querySelector('#idAviao')
+        var qtdInput = modalUpAviao.querySelector('#qtdAssent')
+        var tipoInput = modalUpAviao.querySelector('#tipoAssent')
+        var compInput = modalUpAviao.querySelector('#fkComp')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID do avião: ' + idAviao
+        idAviaoInput.value = idAviao
+        qtdInput.value = qtd 
+        tipoInput.value = tipo 
+        compInput.value = companhia
     })
     
-    // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    // Deletar 
+    var modalDelAviao = document.getElementById('modalDelAviao')
+        modalDelAviao.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idAviao = button.getAttribute('data-bs-whateverId')
+        var qtd = button.getAttribute('data-bs-whateverQtd')
+        var tipo = button.getAttribute('data-bs-whateverTipo')
+        var companhia = button.getAttribute('data-bs-whateverComp')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelAviao.querySelector('.modal-title')
+        var idAviaoInput = modalDelAviao.querySelector('#idAviao')
+        var qtdInput = modalDelAviao.querySelector('#qtdAssent')
+        var tipoInput = modalDelAviao.querySelector('#tipoAssent')
+        var compInput = modalDelAviao.querySelector('#fkComp')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Registro do avião: ' + idAviao
+        idAviaoInput.value = idAviao
+        qtdInput.value = qtd 
+        tipoInput.value = tipo 
+        compInput.value = companhia
     })
 
 </script>

@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportNac" value="Exportar">
                         </form>
                     </li>
                 </ul>
@@ -61,11 +61,13 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpNac" data-bs-whateverId="<?=$IdNac?>" 
+                            data-bs-whateverDesc="<?=$descNac?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelNac" data-bs-whateverId="<?=$IdNac?>" 
+                            data-bs-whateverDesc="<?=$descNac?>">
                             Excluir
                         </button>
                     </form>
@@ -79,41 +81,43 @@
 </div>
 
 <?php include("include/nacionalidade/modalInsertNac.php"); ?>
+<?php include("include/nacionalidade/modalUpNac.php"); ?>
+<?php include("include/nacionalidade/modalDelNac.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpNac = document.getElementById('modalUpNac')
+        modalUpNac.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var id = button.getAttribute('data-bs-whateverId')
+        var desc = button.getAttribute('data-bs-whateverDesc')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpNac.querySelector('.modal-title')
+        var idInput = modalUpNac.querySelector('#idNac')
+        var descInput = modalUpNac.querySelector('#descNac')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID da nacionalidade: ' + id
+        idInput.value = id
+        descInput.value = desc
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelNac = document.getElementById('modalDelNac')
+        modalDelNac.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var id = button.getAttribute('data-bs-whateverId')
+        var desc = button.getAttribute('data-bs-whateverDesc')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelNac.querySelector('.modal-title')
+        var idInput = modalDelNac.querySelector('#idNac')
+        var descInput = modalDelNac.querySelector('#descNac')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Nacionalidade: ' + desc
+        idInput.value = id
+        descInput.value = desc
     })
 
 </script>

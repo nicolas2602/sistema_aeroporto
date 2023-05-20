@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportTb" value="Exportar">
                         </form>
                     </li>
                 </ul>
@@ -60,11 +60,13 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpTipoBag" data-bs-whateverId="<?=$IdTipo?>"
+                            data-bs-whateverNome="<?=$nomeTipo?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelTipoBag" data-bs-whateverId="<?=$IdTipo?>"
+                            data-bs-whateverNome="<?=$nomeTipo?>">
                             Excluir
                         </button>
                     </form>
@@ -78,41 +80,43 @@
 </div>
 
 <?php include("include/tipo_bagagem/modalInsertTipoBag.php"); ?>
+<?php include("include/tipo_bagagem/modalUpTipoBag.php"); ?>
+<?php include("include/tipo_bagagem/modalDelTipoBag.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpTipoBag = document.getElementById('modalUpTipoBag')
+        modalUpTipoBag.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idTipo = button.getAttribute('data-bs-whateverId')
+        var desc = button.getAttribute('data-bs-whateverNome')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpTipoBag.querySelector('.modal-title')
+        var idTipoInput = modalUpTipoBag.querySelector('#idTb')
+        var descInput = modalUpTipoBag.querySelector('#nomeBag')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID do tipo de bagagem: ' + idTipo
+        idTipoInput.value = idTipo
+        descInput.value = desc
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelTipoBag = document.getElementById('modalDelTipoBag')
+        modalDelTipoBag.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idTipo = button.getAttribute('data-bs-whateverId')
+        var desc = button.getAttribute('data-bs-whateverNome')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelTipoBag.querySelector('.modal-title')
+        var idTipoInput = modalDelTipoBag.querySelector('#idTb')
+        var descInput = modalDelTipoBag.querySelector('#nomeBag')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Tipo de bagagem: ' + desc
+        idTipoInput.value = idTipo
+        descInput.value = desc
     })
 
 </script>

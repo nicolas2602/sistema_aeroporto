@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportGen" value="Exportar">
                         </form>
                     </li>
                 </ul>
@@ -61,11 +61,13 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpGen" data-bs-whateverId="<?=$IdGenero?>"
+                            data-bs-whateverDesc="<?=$descGenero?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelGen" data-bs-whateverId="<?=$IdGenero?>"
+                            data-bs-whateverDesc="<?=$descGenero?>">
                             Excluir
                         </button>
                     </form>
@@ -79,41 +81,43 @@
 </div>
 
 <?php include("include/genero/modalInsertGen.php"); ?>
+<?php include("include/genero/modalUpGen.php"); ?>
+<?php include("include/genero/modalDelGen.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpGen = document.getElementById('modalUpGen')
+        modalUpGen.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idGen = button.getAttribute('data-bs-whateverId')
+        var desc = button.getAttribute('data-bs-whateverDesc')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpGen.querySelector('.modal-title')
+        var idGenInput = modalUpGen.querySelector('#idGen')
+        var descGenInput = modalUpGen.querySelector('#descGen')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID do gênero: ' + idGen
+        idGenInput.value = idGen
+        descGenInput.value = desc
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelGen = document.getElementById('modalDelGen')
+        modalDelGen.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idGen = button.getAttribute('data-bs-whateverId')
+        var desc = button.getAttribute('data-bs-whateverDesc')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelGen.querySelector('.modal-title')
+        var idGenInput = modalDelGen.querySelector('#idGen')
+        var descGenInput = modalDelGen.querySelector('#descGen')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Descrição do gênero: ' + desc
+        idGenInput.value = idGen
+        descGenInput.value = desc
     })
 
 </script>

@@ -61,7 +61,7 @@ alter table aeroporto
 
 select IdAeroporto, nomeAeroporto, nomeCidade
 from aeroporto as a
-inner join cidade as city
+left join cidade as city
 on a.fk_IdCidade = city.IdCidade;
 
 insert into aeroporto(nomeAeroporto, fk_IdCidade) values ('Aeroporto de Guarulhos',1), ('Aeroporto de Tóquio', 3);
@@ -145,7 +145,7 @@ alter table aviao
 
 select IdAviao, qtdAssento, tipoAssento, nomeCompanhia
 from aviao as av 
-inner join companhia_aerea as ca 
+left join companhia_aerea as ca 
 on av.fk_IdCompanhia = ca.IdCompanhia;
 
 insert into aviao(qtdAssento, tipoAssento, fk_IdCompanhia) values (50, 'Duplo', 1), (50, 'Triplo', 2), (60, 'Duplo', 3);

@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportCargo" value="Exportar">
                         </form>
                     </li>
                 </ul>
@@ -61,11 +61,13 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpCargo" data-bs-whateverId="<?=$IdCargo?>"
+                            data-bs-whateverDesc="<?=$descCargo?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelCargo" data-bs-whateverId="<?=$IdCargo?>"
+                            data-bs-whateverDesc="<?=$descCargo?>">
                             Excluir
                         </button>
                     </form>
@@ -79,41 +81,43 @@
 </div>
 
 <?php include("include/cargo/modalInsertCargo.php"); ?>
+<?php include("include/cargo/modalUpCargo.php"); ?>
+<?php include("include/cargo/modalDelCargo.php"); ?>
 
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpCargo = document.getElementById('modalUpCargo')
+        modalUpCargo.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idCargo = button.getAttribute('data-bs-whateverId')
+        var desc = button.getAttribute('data-bs-whateverDesc')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpCargo.querySelector('.modal-title')
+        var idCargoInput = modalUpCargo.querySelector('#idCargo')
+        var descInput = modalUpCargo.querySelector('#nomeCargo')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID do cargo: ' + idCargo
+        idCargoInput.value = idCargo
+        descInput.value = desc
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelCargo = document.getElementById('modalDelCargo')
+        modalDelCargo.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idCargo = button.getAttribute('data-bs-whateverId')
+        var desc = button.getAttribute('data-bs-whateverDesc')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelCargo.querySelector('.modal-title')
+        var idCargoInput = modalDelCargo.querySelector('#idCargo')
+        var descInput = modalDelCargo.querySelector('#nomeCargo')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Descrição do cargo: ' + desc
+        idCargoInput.value = idCargo
+        descInput.value = desc
     })
 
 </script>

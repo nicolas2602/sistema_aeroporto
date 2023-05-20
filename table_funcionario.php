@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" class="dropdown-item" name="exportCidade" value="Exportar">
+                            <input type="submit" class="dropdown-item" name="exportFunc" value="Exportar">
                         </form>
                     </li>
                 </ul>
@@ -51,7 +51,8 @@
             </thead>
 
             <?php
-                $sqlFunc = "select IdFuncionario, nomeFuncionario, descGenero, descCargo, fk_IdAviao
+                $sqlFunc = "select IdFuncionario, nomeFuncionario, descGenero, descCargo, fk_IdAviao,
+                            fk_IdGenero, fk_IdCargo
                             from funcionario as f
 
                             inner join genero as gen
@@ -79,11 +80,15 @@
                 <td>
                     <form action="" method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalUpFunc" data-bs-whateverId="<?=$IdFunc?>"
+                            data-bs-whateverNome="<?=$nomeFunc?>" data-bs-whateverGen="<?=$func['fk_IdGenero']?>" 
+                            data-bs-whateverCargo="<?=$func['fk_IdCargo']?>" data-bs-whateverAviao="<?=$fkIdAviao?>">
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelFunc" data-bs-whateverId="<?=$IdFunc?>"
+                            data-bs-whateverNome="<?=$nomeFunc?>" data-bs-whateverGen="<?=$func['fk_IdGenero']?>" 
+                            data-bs-whateverCargo="<?=$func['fk_IdCargo']?>" data-bs-whateverAviao="<?=$fkIdAviao?>">
                             Excluir
                         </button>
                     </form>
@@ -97,41 +102,61 @@
 </div>
 
 <?php include("include/funcionario/modalInsertFunc.php"); ?>
+<?php include("include/funcionario/modalUpFunc.php"); ?>
+<?php include("include/funcionario/modalDelFunc.php"); ?>
     
 <script type="text/javascript">
 
     // Atualizar país
-    var modalEditPais = document.getElementById('modalEditPais')
-        modalEditPais.addEventListener('show.bs.modal', function (event) {               
+    var modalUpFunc = document.getElementById('modalUpFunc')
+        modalUpFunc.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idFunc = button.getAttribute('data-bs-whateverId')
+        var nome = button.getAttribute('data-bs-whateverNome')
+        var gen = button.getAttribute('data-bs-whateverGen')
+        var cargo = button.getAttribute('data-bs-whateverCargo')
+        var aviao = button.getAttribute('data-bs-whateverAviao')
 
-        var modalTitle = modalEditPais.querySelector('.modal-title')
-        var idInput = modalEditPais.querySelector('#idPais')
-        var paisInput = modalEditPais.querySelector('#nomePais')
+        var modalTitle = modalUpFunc.querySelector('.modal-title')
+        var idFuncInput = modalUpFunc.querySelector('#idFunc')
+        var nomeInput = modalUpFunc.querySelector('#nomeFunc')
+        var genInput = modalUpFunc.querySelector('#gen')
+        var cargoInput = modalUpFunc.querySelector('#cargo')
+        var aviaoInput = modalUpFunc.querySelector('#aviao')
 
-        modalTitle.textContent = 'ID do País: ' + idPais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'ID do funcionário: ' + idFunc 
+        idFuncInput.value = idFunc
+        nomeInput.value = nome 
+        genInput.value = gen 
+        cargoInput.value = cargo 
+        aviaoInput.value = aviao
     })
     
     // Deletar País
-    var modalDelPais = document.getElementById('modalDelPais')
-        modalDelPais.addEventListener('show.bs.modal', function (event) {               
+    var modalDelFunc = document.getElementById('modalDelFunc')
+        modalDelFunc.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 
-        var idPais = button.getAttribute('data-bs-whateverPais')
-        var nomePais = button.getAttribute('data-bs-whateverNome')
+        var idFunc = button.getAttribute('data-bs-whateverId')
+        var nome = button.getAttribute('data-bs-whateverNome')
+        var gen = button.getAttribute('data-bs-whateverGen')
+        var cargo = button.getAttribute('data-bs-whateverCargo')
+        var aviao = button.getAttribute('data-bs-whateverAviao')
 
-        var modalTitle = modalDelPais.querySelector('.modal-title')
-        var idInput = modalDelPais.querySelector('#idPais')
-        var paisInput = modalDelPais.querySelector('#nomePais')
+        var modalTitle = modalDelFunc.querySelector('.modal-title')
+        var idFuncInput = modalDelFunc.querySelector('#idFunc')
+        var nomeInput = modalDelFunc.querySelector('#nomeFunc')
+        var genInput = modalDelFunc.querySelector('#gen')
+        var cargoInput = modalDelFunc.querySelector('#cargo')
+        var aviaoInput = modalDelFunc.querySelector('#aviao')
 
-        modalTitle.textContent = 'Nome do país: ' + nomePais
-        idInput.value = idPais
-        paisInput.value = nomePais
+        modalTitle.textContent = 'Nome do funcionário: ' + nome 
+        idFuncInput.value = idFunc
+        nomeInput.value = nome 
+        genInput.value = gen 
+        cargoInput.value = cargo 
+        aviaoInput.value = aviao
     })
 
 </script>
