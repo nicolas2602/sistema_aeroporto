@@ -85,7 +85,7 @@
 
             </div>
             <div class="modal-footer">
-                <input type="submit" class="btn btn-primary mb-3" name="cadVoo" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Atualizar">
+                <input type="submit" class="btn btn-primary mb-3" name="upVoo" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Atualizar">
             </div>
         </form>
     </div>

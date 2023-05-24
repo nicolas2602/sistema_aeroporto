@@ -80,7 +80,8 @@
                             Atualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" 
-                            data-bs-target="#" data-bs-whatever="">
+                            data-bs-target="#modalDelBag" data-bs-whateverId="<?=$IdBag?>" data-bs-whateverPeso="<?=$peso?>"
+                            data-bs-whateverTb="<?=$bag['fk_IdTipoBagagem']?>" data-bs-whateverPass="<?=$bag['fk_IdPassageiro']?>">
                             Excluir
                         </button>
                     </form>
@@ -123,7 +124,7 @@
     })
     
     // Deletar País
-    var modalDelBag. = document.getElementById('modalDelBag')
+    var modalDelBag = document.getElementById('modalDelBag')
         modalDelBag.addEventListener('show.bs.modal', function (event) {               
         var button = event.relatedTarget
 

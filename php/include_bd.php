@@ -19,6 +19,13 @@
     include("bd_pais/updatePais.php");
     include("bd_cidade/updateCidade.php");
     include("bd_aeroporto/updateAero.php");
+    include("bd_companhia/updateComp.php");
+    include("bd_voo/updateVoo.php");
+    include("bd_aviao/updateAviao.php");
+    include("bd_cargo/updateCargo.php");
+    include("bd_genero/updateGen.php");
+    include("bd_funcionario/updateFunc.php");
+    include("bd_passageiro/updatePassageiro.php");
 
     // Delete
     include("bd_pais/deletePais.php");
