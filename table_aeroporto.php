@@ -51,7 +51,7 @@
             <?php
                 $air = "select IdAeroporto, nomeAeroporto, nomeCidade, fk_IdCidade
                             from aeroporto as a
-                            left join cidade as city
+                            inner join cidade as city
                             on a.fk_IdCidade = city.IdCidade;";
 
                 $query_air = mysqli_query($conexao, $air);

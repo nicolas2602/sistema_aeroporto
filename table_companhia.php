@@ -19,7 +19,7 @@
                         </button>
                     </li>
                     <li>
-                        <form action="" method="post">
+                        <form action="include/companhia/planilhaComp.php" method="post">
                             <input type="submit" class="dropdown-item" name="exportComp" value="Exportar">
                         </form>
                     </li>
@@ -42,7 +42,7 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Aeroporto</th>
+                    <th scope="col">Companhia aérea</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>

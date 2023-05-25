@@ -19,7 +19,7 @@
                         </button>
                     </li>
                     <li>
-                        <form action="" method="post">
+                        <form action="include/voo/planilhaVoo.php" method="post">
                             <input type="submit" class="dropdown-item" name="exportVoo" value="Exportar">
                         </form>
                     </li>
@@ -86,7 +86,7 @@
                 <td><?php echo($horarioChegada)?></td>
                 <td><?php echo($horarioSaida)?></td>
                 <td>
-                    <form action="" method="post">
+                    <form method="post">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
                             data-bs-target="#modalUpVoo" data-bs-whateverId="<?=$IdVoo?>" data-bs-whateverAeroSaida="<?=$voo['fk_IdAeroporto_Saida']?>"
                             data-bs-whateverAeroDest="<?=$voo['fk_IdAeroporto_Destino']?>" data-bs-whateverComp="<?=$voo['fk_IdCompanhia']?>"

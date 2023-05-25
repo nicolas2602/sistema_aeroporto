@@ -26,9 +26,25 @@
     include("bd_genero/updateGen.php");
     include("bd_funcionario/updateFunc.php");
     include("bd_passageiro/updatePassageiro.php");
+    include("bd_nacionalidade/updateNac.php");
+    include("bd_passageiro_nacionalidade/updatePn.php");
+    include("bd_tipo_bagagem/updateTipoBag.php");
+    include("bd_bagagem/updateBagagem.php");
+    
 
     // Delete
     include("bd_pais/deletePais.php");
     include("bd_cidade/deleteCidade.php");
     include("bd_aeroporto/deleteAero.php");
+    include("bd_companhia/deleteComp.php");
+    include("bd_voo/deleteVoo.php");
+    include("bd_aviao/deleteAviao.php");
+    include("bd_cargo/deleteCargo.php");
+    include("bd_genero/deleteGen.php");
+    include("bd_funcionario/deleteFunc.php");
+    include("bd_passageiro/deletePassageiro.php");
+    include("bd_nacionalidade/deleteNac.php");
+    include("bd_passageiro_nacionalidade/deletePn.php");
+    include("bd_tipo_bagagem/deleteTipoBag.php");
+    include("bd_bagagem/deleteBagagem.php");
 ?>

@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="submit" class="btn btn-primary mb-3" name="upBag" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Cadastrar">
+                <input type="submit" class="btn btn-primary mb-3" name="upBag" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Atualizar">
             </div>
         </form>
     </div>
