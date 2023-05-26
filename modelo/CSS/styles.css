@@ -1,0 +1,16 @@
+
+.cabecalho{
+    width: 100%;
+    background-color: #0d6efd;  
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.cavecalho--itens{
+    display: inline-block
+}
+
+img{
+    display: inline-block;
+    height: 80px;
+}

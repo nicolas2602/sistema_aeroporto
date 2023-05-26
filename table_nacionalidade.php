@@ -19,7 +19,7 @@
                         </button>
                     </li>
                     <li>
-                        <form action="" method="post">
+                        <form action="include/nacionalidade/planilhaNac.php" method="post">
                             <input type="submit" class="dropdown-item" name="exportNac" value="Exportar">
                         </form>
                     </li>

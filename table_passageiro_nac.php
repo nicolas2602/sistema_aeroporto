@@ -19,7 +19,7 @@
                         </button>
                     </li>
                     <li>
-                        <form action="" method="post">
+                        <form action="include/passageiro_nacionalidade/planilhaPn.php" method="post">
                             <input type="submit" class="dropdown-item" name="exportPn" value="Exportar">
                         </form>
                     </li>

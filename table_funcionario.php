@@ -19,7 +19,7 @@
                         </button>
                     </li>
                     <li>
-                        <form action="" method="post">
+                        <form action="include/funcionario/planilhaFunc.php" method="post">
                             <input type="submit" class="dropdown-item" name="exportFunc" value="Exportar">
                         </form>
                     </li>

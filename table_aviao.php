@@ -19,7 +19,7 @@
                         </button>
                     </li>
                     <li>
-                        <form action="" method="post">
+                        <form action="include/aviao/planilhaAviao.php" method="post">
                             <input type="submit" class="dropdown-item" name="exportAviao" value="Exportar">
                         </form>
                     </li>
