@@ -301,3 +301,51 @@ inner join tipo_bagagem as tb
 on bg.fk_IdTipoBagagem = tb.IdTipoBagagem;
 
 insert into bagagem(pesoBagagem, fk_IdTipoBagagem, fk_IdPassageiro) values (20, 1, 2), (30, 2, 1), (40, 3, 3);
+
+
+-- Comandos utilizados nos gráficos
+
+/* Quantidade de cidades por países */
+select count(fk_IdPais) as qtdPais, nomePais 
+from cidade as c 
+inner join pais as p 
+on c.fk_IdPais = p.IdPais 
+group by IdPais;
+
+/* Média de Funcionários por avião */
+select avg(fk_IdCargo) as qtd, fk_IdAviao
+from funcionario as f 
+inner join cargo as c 
+on f.fk_IdCargo = c.IdCargo
+
+inner join aviao as a 
+on f.fk_IdAviao = a.IdAviao
+
+group by IdAviao;
+
+/* Aeroporto Chegada */
+select count(v.fk_IdAeroporto_Destino) as destino, aird.nomeAeroporto as aeroDest
+from voo as v
+inner join aeroporto as aird
+on v.fk_IdAeroporto_Destino = aird.IdAeroporto
+GROUP by IdAeroporto;
+
+---
+select count(fk_IdCompanhia) as qtdCompanhia, nomeCompanhia
+from voo as v
+right join companhia_aerea as ca 
+on v.fk_IdCompanhia = ca.IdCompanhia
+order by nomeCompanhia ASC
+group by IdCompanhia;
+
+---
+select count(fk_IdCargo) as qtd, fk_IdAviao
+from funcionario as f 
+
+inner join cargo as c 
+on f.fk_IdCargo = c.IdCargo
+
+inner join aviao as a 
+on f.fk_IdAviao = a.IdAviao
+
+group by IdAviao;
