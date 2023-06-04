@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include("include/googleCharts.php") ?>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="img/aviao_icon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -37,7 +38,7 @@
                                     <input type="submit" class="nav-link active text-white" aria-current="page" value="Início" data-bs-toggle="modal" name="fechar">
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="grafico.php">Gráficos</a>
+                                    <input type="submit" class="nav-link active text-white" aria-current="page" value="Gráficos" data-bs-toggle="modal" name="graf">
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -103,6 +104,8 @@
             include("table_tipo_bagagem.php");
         }else if(isset($_POST['showBag'])){
             include("table_bagagem.php");
+        }else if(isset($_POST['graf'])){
+            include("grafico.php");
         }else{
             echo("
                 <div class='d-flex justify-content-center'>
@@ -115,12 +118,6 @@
             ");
         }
     ?>
-
-    <div class="d-flex justify-content-center">
-        <div class="container">
-            <?php include("include/pais/alertPais.php"); ?>
-        </div>
-    </div>
 
     <?php include("include/script.php"); ?>
 
