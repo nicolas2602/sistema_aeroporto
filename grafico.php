@@ -137,27 +137,27 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Aeroporto de Saída', 'Quantidade de voos', { role: "style" }],
+          ['Bagagem', 'Quantidade de bagagens'],
           <?php 
-              $sqlV = "select count(v.fk_IdAeroporto_Destino) as destino, aird.nomeAeroporto as aeroDest
-                      from voo as v
-                      inner join aeroporto as aird
-                      on v.fk_IdAeroporto_Destino = aird.IdAeroporto
-                      GROUP by IdAeroporto;";
+              $sqlV = "select count(bg.fk_IdTipoBagagem) as qtdBagagem, nomeBagagem
+                      from bagagem as bg 
+                      left join tipo_bagagem as tb 
+                      on bg.fk_IdTipoBagagem = tb.IdTipoBagagem
+                      group by IdTipoBagagem;";
               $queryVoo = mysqli_query($conexao, $sqlV);
 
               while($v = mysqli_fetch_array($queryVoo)){
-                  $aeroporto = $v['aeroDest'];
-                  $qtdDest = $v['destino'];
+                  $bagagem = $v['nomeBagagem'];
+                  $qtd = $v['qtdBagagem'];
           ?>
 
-          ['<?php echo($aeroporto); ?>', <?php echo($qtdDest); ?>, "green"],
+          ['<?php echo($bagagem); ?>', <?php echo($qtd); ?>],
 
           <?php } ?>
         ]);
 
         var options = {
-          title: 'Destino voo',
+          title: 'Quantidade de bagagens por tipo',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
@@ -188,7 +188,7 @@
           <div id="columnchart_values" style="width: 500px; height: 300px;"></div>
         </div>
         <div class="col">
-          <div id="curve_chart2" style="width: 500px; height: 500px"></div>
+          <div id="curve_chart2" style="width: 700px; height: 500px"></div>
         </div>
       </div>
     </div>
