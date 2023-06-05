@@ -31,10 +31,9 @@ img{
 
 /*Área de boas-vindas*/
 .logoWelc{
-    /* display: inline-block; */
-    height: 500px; 
-    padding: 100px;
-    /* width: 25%; */
+    display: inline-block;
+    height: 25%; 
+    width: 25%;
 }
 
 .h2Welc{
@@ -45,12 +44,17 @@ img{
 .txtWelc{
     font-size: 2em;
     color: white;
-    margin-bottom: 100px;
+}
+
+.item1{
+    display: inline;
+}
+
+.item2{
+    display: inline;
 }
 
 .welc{
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    /* height: 100%; */
+    height: 100%;
 }

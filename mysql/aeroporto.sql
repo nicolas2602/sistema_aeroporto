@@ -40,10 +40,13 @@ from cidade as city
 left join pais as country
 on city.fk_IdPais = country.IdPais;
 
+-- Inserir
 insert into cidade(nomeCidade, fk_IdPais) values('São Paulo', 1), ('Paris', 2), ('Tóquio', 3), ('Rio de Janeiro', 1);
 
+-- Atualizar
 update cidade set nomeCidade='Vancouver' where IdCidade=2;
 
+-- Deletar
 delete from cidade where IdCidade=1;
 
 --Aeroporto--------------------------------------------------------------------------------------------------------------------------

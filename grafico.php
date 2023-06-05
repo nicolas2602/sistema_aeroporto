@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
     <div class="container">
-        <h3>Gráficos BI</h3>
+        <h3>Dashboard</h3>
         <hr>
     </div>
 </div>
