@@ -6,7 +6,7 @@
         $aviao = $_POST['aviao'];
 
         $queryFunc = "insert into funcionario (nomeFuncionario, fk_IdGenero, fk_IdAviao, fk_IdCargo) values
-                      ('$nome', $genero, $cargo, $aviao)";
+                      ('$nome', $genero, $aviao, $cargo)";
         mysqli_query($conexao, $queryFunc);
     }
 

@@ -50,9 +50,10 @@
 
             <?php
                 $air = "select IdAeroporto, nomeAeroporto, nomeCidade, fk_IdCidade
-                            from aeroporto as a
-                            inner join cidade as city
-                            on a.fk_IdCidade = city.IdCidade;";
+                        from aeroporto as a
+                        inner join cidade as city
+                        on a.fk_IdCidade = city.IdCidade
+                        order by IdAeroporto ASC;";
 
                 $query_air = mysqli_query($conexao, $air);
                 while($a = mysqli_fetch_assoc($query_air)){

@@ -19,7 +19,7 @@
                         <option selected disabled value="">Selecione...</option>
                         <option value="Duplo">Duplo</option>
                         <option value="Triplo">Triplo</option>
-                        <option value="Quaduplo">Quaduplo</option>
+                        <option value="Quaduplo">Quádruplo</option>
                       </select>
                     </div>
                 </div>

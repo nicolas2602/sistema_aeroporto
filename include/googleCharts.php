@@ -26,7 +26,7 @@
     ]);
 
     var options = {
-        title: 'Quantidade de cidades por países'
+        title: 'Quantidade de cidades por país'
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));

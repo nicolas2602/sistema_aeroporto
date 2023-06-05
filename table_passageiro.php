@@ -59,7 +59,8 @@
                             on ps.fk_IdGenero = gen.IdGenero
 
                             inner join aviao as av 
-                            on ps.fk_IdAviao = av.IdAviao;";
+                            on ps.fk_IdAviao = av.IdAviao
+                            order by IdPassageiro ASC;";
 
                 $queryPass = mysqli_query($conexao, $sqlPass);
                 while($pass = mysqli_fetch_assoc($queryPass)){

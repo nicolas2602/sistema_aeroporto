@@ -59,7 +59,8 @@
                             on f.fk_IdGenero = gen.IdGenero
 
                             inner join cargo as car
-                            on f.fk_IdCargo = car.IdCargo;";
+                            on f.fk_IdCargo = car.IdCargo
+                            order by IdFuncionario ASC;";
 
                 $queryFunc = mysqli_query($conexao, $sqlFunc);
                 while($func = mysqli_fetch_assoc($queryFunc)){

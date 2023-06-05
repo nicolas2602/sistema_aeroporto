@@ -56,7 +56,8 @@
                             left join passageiro as ps
                             on bg.fk_IdPassageiro = ps.IdPassageiro
                             inner join tipo_bagagem as tb 
-                            on bg.fk_IdTipoBagagem = tb.IdTipoBagagem;";
+                            on bg.fk_IdTipoBagagem = tb.IdTipoBagagem
+                            order by IdBagagem ASC;";
 
                 $queryBag = mysqli_query($conexao, $sqlBag);
                 while($bag = mysqli_fetch_assoc($queryBag)){

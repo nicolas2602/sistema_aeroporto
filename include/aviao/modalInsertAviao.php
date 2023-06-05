@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-success">
-        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Cadastro de Cidades</h1>
+        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Cadastro de aviões</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <form method="post">
@@ -18,7 +18,7 @@
                         <option selected disabled value="">Selecione...</option>
                         <option value="Duplo">Duplo</option>
                         <option value="Triplo">Triplo</option>
-                        <option value="Quaduplo">Quaduplo</option>
+                        <option value="Quaduplo">Quádruplo</option>
                       </select>
                     </div>
                 </div>

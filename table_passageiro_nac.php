@@ -57,7 +57,8 @@
                                 on pn.fk_IdPassageiro = ps.IdPassageiro
 
                                 inner join nacionalidade as nc 
-                                on pn.fk_IdNacionalidade = nc.IdNacionalidade;";
+                                on pn.fk_IdNacionalidade = nc.IdNacionalidade
+                                order by IdPassagNac ASC;";
 
                 $queryPassNac = mysqli_query($conexao, $sqlPassNac);
                 while($pn = mysqli_fetch_assoc($queryPassNac)){

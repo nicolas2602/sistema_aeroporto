@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-success">
-        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Cadastro de Países</h1>
+        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Cadastro de Nacionalidades</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <form method="post">

@@ -35,7 +35,7 @@ alter table cidade
 alter table cidade
     add foreign key(fk_IdPais) references pais(IdPais);
 
-select IdCidade, nomeCidade, nomePais
+select IdCidade, nomeCidade, nomePais, fk_IdPais
 from cidade as city
 left join pais as country
 on city.fk_IdPais = country.IdPais;
@@ -62,16 +62,20 @@ alter table aeroporto
 alter table aeroporto
     add foreign key(fk_IdCidade) references cidade(IdCidade);
 
-select IdAeroporto, nomeAeroporto, nomeCidade
+select IdAeroporto, nomeAeroporto, nomeCidade, fk_IdCidade
 from aeroporto as a
-left join cidade as city
-on a.fk_IdCidade = city.IdCidade;
+inner join cidade as city
+on a.fk_IdCidade = city.IdCidade
+order by IdAeroporto ASC;
 
+-- Inserir
 insert into aeroporto(nomeAeroporto, fk_IdCidade) values ('Aeroporto de Guarulhos',1), ('Aeroporto de Tóquio', 3);
 insert into aeroporto(nomeAeroporto, fk_IdCidade) values ('Aeroporto do Rio de Janeiro-Santos-Dumont',4);
 
+-- Atualizar
 update aeroporto set nomeAeroporto='Aeroporto de São Paulo Congonhas' where IdAeroporto=1;
 
+-- Excluir
 delete from aeroporto where IdAeroporto=3;
 
 --Companhia Aerea-----------------------------------------------------------------------------------------------------------------
@@ -93,10 +97,13 @@ alter table companhia_aerea
 
 select * from companhia_aerea;
 
+-- Inserir
 insert into companhia_aerea(nomeCompanhia) values ('LATAM'), ('Japan Airlines'), ('United Airlines');
 
+-- Atualizar
 update companhia_aerea set nomeCompanhia='Azul' where IdCompanhia=1;
 
+-- Excluir
 delete from companhia_aerea where nomeCompanhia=3;
 
 --Voo-----------------------------------------------------------------------------------------------------
@@ -120,19 +127,26 @@ alter table voo
 select IdVoo, airs.nomeAeroporto as saida,  aird.nomeAeroporto as destino, nomeCompanhia, 
         ifnull(horarioChegada, 'Horário Indefinido') as horarioChegada, 
         ifnull(horarioSaida, 'Horário Indefinido') as horarioSaida
-    from voo as v
-    -- Aeroporto Destino
-    left join aeroporto as aird
-    on v.fk_IdAeroporto_Destino = aird.IdAeroporto
-    -- Aeroporto Saída
-    left join aeroporto as airs
-    on v.fk_IdAeroporto_Saida = airs.IdAeroporto
-    -- Nome da companhia aérea
-    left join companhia_aerea as ca 
-    on v.fk_IdCompanhia = ca.IdCompanhia;
+from voo as v
+-- Aeroporto Destino
+left join aeroporto as aird
+on v.fk_IdAeroporto_Destino = aird.IdAeroporto
+-- Aeroporto Saída
+left join aeroporto as airs
+on v.fk_IdAeroporto_Saida = airs.IdAeroporto
+-- Nome da companhia aérea
+left join companhia_aerea as ca 
+on v.fk_IdCompanhia = ca.IdCompanhia;
 
+-- Inserir
 insert into voo(fk_IdAeroporto_Saida, fk_IdAeroporto_Destino, fk_IdCompanhia, horarioChegada, horarioSaida)
 values (1, 3, 1, '14:00:22', '18:12:00'), (2, 1, 2, NULL, NULL), (1, 2, 3, '15:00:00', '01:50:00');
+
+-- Atualizar
+update voo set horarioChegada='18:12:00' where IdVoo=3;
+
+-- Excluir
+delete from voo where IdVoo=2;
 
 --Avião------------------------------------------------------------------------------------------------------------
 
@@ -146,12 +160,19 @@ alter table aviao
     add fk_IdCompanhia int not null,
     add foreign key(fk_IdCompanhia) references companhia_aerea(IdCompanhia);
 
-select IdAviao, qtdAssento, tipoAssento, nomeCompanhia
+select IdAviao, qtdAssento, tipoAssento, nomeCompanhia, fk_IdCompanhia
 from aviao as av 
 left join companhia_aerea as ca 
 on av.fk_IdCompanhia = ca.IdCompanhia;
 
+-- Inserir
 insert into aviao(qtdAssento, tipoAssento, fk_IdCompanhia) values (50, 'Duplo', 1), (50, 'Triplo', 2), (60, 'Duplo', 3);
+
+-- Atualizar
+update aviao set tipoAssento="Duplo" where IdAviao=2;
+
+-- Excluir
+delete from aviao where IdAviao=2;
 
 --Cargo-----------------------------------------------------------------------------------------------------------------------------
 create table cargo(
@@ -164,7 +185,14 @@ alter table cargo
 
 select * from cargo;
 
-insert into cargo (descCargo) values ('Comissário(a) de bordo'), ('Piloto'), ('Comandante'), ('Mecânico');
+-- Inserir
+insert into cargo (descCargo) values ('Comissário(a) de bordo'), ('Piloto'), ('Comandante'), ('Mecânico'), ('Cargo 1');
+
+-- Atualizar
+update cargo set descCargo='Atendente' where IdCargo=5;
+
+-- Excluir
+delete from cargo where IdCargo=5;
 
 --Gênero------------------------------------------------------------------------------------------------------------------------------
 
@@ -196,15 +224,26 @@ alter table funcionario
     add foreign key(fk_IdAviao) references aviao(IdAviao),
     add foreign key(fk_IdCargo) references cargo(IdCargo);
 
-select IdFuncionario, nomeFuncionario, descGenero, descCargo, fk_IdAviao
+select IdFuncionario, nomeFuncionario, descGenero, descCargo, fk_IdAviao,
+fk_IdGenero, fk_IdCargo
 from funcionario as f
+
 inner join genero as gen
 on f.fk_IdGenero = gen.IdGenero
-inner join cargo as car
-on f.fk_IdCargo = car.IdCargo;
 
+inner join cargo as car
+on f.fk_IdCargo = car.IdCargo
+order by IdFuncionario ASC;
+
+-- Inserir
 insert into funcionario (nomeFuncionario, fk_IdGenero, fk_IdAviao, fk_IdCargo) values
 ('Emerson', 2, 1, 2), ('Mateus', 2, 1, 2), ('Joana', 1, 1, 1);
+
+-- Atualizar
+update funcionario set fk_IdAviao=2 where IdFuncionario=2;
+
+-- Excluir
+delete from funcionario where IdFuncionario=1;
 
 --Passageiro---------------------------------------------------------------------------------------------------------------------------------
 
@@ -222,15 +261,25 @@ alter table passageiro
     add foreign key(fk_IdAviao) references aviao(IdAviao);
 
 select IdPassageiro, nomePassageiro, DATE_FORMAT(dataNascimento, '%d/%m/%Y') as dataNascimento,
-       descGenero, fk_IdAviao
+       descGenero, fk_IdGenero, fk_IdAviao
 from passageiro as ps 
+
 inner join genero as gen 
 on ps.fk_IdGenero = gen.IdGenero
-inner join aviao as av 
-on ps.fk_IdAviao = av.IdAviao;
 
+inner join aviao as av 
+on ps.fk_IdAviao = av.IdAviao
+order by IdPassageiro ASC;
+
+-- Inserir
 insert into passageiro (nomePassageiro, dataNascimento, fk_IdGenero, fk_IdAviao) values
 ('Nicolas', '2002-12-26', 2, 1), ('Eduardo', '1991-10-02', 2, 1), ('Stefanny', '2004-07-12', 1, 2);
+
+-- Atualizar
+update passageiro set dataNascimento='1991-10-12' where IdPassageiro=2;
+
+-- Excluir
+delete from passageiro where IdPassageiro=3;
 
 --Nacionalidade-------------------------------------------------------------------------------------------------------------------------------
 
@@ -244,7 +293,14 @@ alter table nacionalidade
 
 select * from nacionalidade;
 
+-- Inserir
 insert into nacionalidade (descNacionalidade) values ('Brasileiro'), ('Americano'), ('Francês');
+
+-- Atualizar
+update nacionalidade set descCargo='Japonês' where IdNacionalidade=3;
+
+-- Excluir
+delete from nacionalidade where IdNacionalidade=3;
 
 --Passageiro_Nacionalidade-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -259,14 +315,25 @@ alter table passageiro_nacionalidade
     add foreign key(fk_IdNacionalidade) references nacionalidade(IdNacionalidade);
 
 
-select IdPassagNac, nomePassageiro, descNacionalidade
+select IdPassagNac, nomePassageiro, descNacionalidade,
+       fk_IdPassageiro, fk_IdNacionalidade
 from passageiro_nacionalidade as pn 
+
 left join passageiro as ps
 on pn.fk_IdPassageiro = ps.IdPassageiro
-inner join nacionalidade as nc 
-on pn.fk_IdNacionalidade = nc.IdNacionalidade;
 
+inner join nacionalidade as nc 
+on pn.fk_IdNacionalidade = nc.IdNacionalidade
+order by IdPassagNac ASC;
+
+-- Inserir
 insert into passageiro_nacionalidade (fk_IdPassageiro, fk_IdNacionalidade) values (1, 1), (2, 1), (3, 2);
+
+-- Atualizar
+update passageiro_nacionalidade set fk_IdNacionalidade=1 where IdPassagNac=3;
+
+-- Excluir
+delete from passageiro_nacionalidade where IdPassagNac=3;
 
 --Tipo Bagagem-------------------------------------------------------------------------------------------------------------------------------------
 
@@ -280,7 +347,14 @@ alter table tipo_bagagem
 
 select * from tipo_bagagem;
 
+-- Inserir
 insert into tipo_bagagem (nomeBagagem) values ('Mala'), ('Mochila'), ('Mochila de roda'), ('Instrumento musical');
+
+-- Atualizar
+update tipo_bagagem set nomeBagagem='Caixa' where IdTipoBagagem=4;
+
+-- Excluir
+delete from tipo_bagagem where IdTipoBagagem=4;
 
 --Bagagem------------------------------------------------------------------------------------------------------------------------------
 
@@ -296,17 +370,26 @@ alter table bagagem
     add foreign key(fk_IdTipoBagagem) references tipo_bagagem(IdTipoBagagem),
     add foreign key(fk_IdPassageiro) references passageiro(IdPassageiro);
 
-select IdBagagem, pesoBagagem, nomeBagagem, nomePassageiro
+select IdBagagem, pesoBagagem, nomeBagagem, nomePassageiro,
+fk_IdPassageiro, fk_IdTipoBagagem
 from bagagem as bg 
 left join passageiro as ps
 on bg.fk_IdPassageiro = ps.IdPassageiro
 inner join tipo_bagagem as tb 
-on bg.fk_IdTipoBagagem = tb.IdTipoBagagem;
+on bg.fk_IdTipoBagagem = tb.IdTipoBagagem
+order by IdBagagem ASC;
 
+-- Inserir
 insert into bagagem(pesoBagagem, fk_IdTipoBagagem, fk_IdPassageiro) values (20, 1, 2), (30, 2, 1), (40, 3, 3);
 
+-- Atualizar
+update bagagem set fk_IdPassageiro=2 where IdBagagem=3;
 
--- Comandos utilizados nos gráficos
+-- Excluir 
+delete from bagagem where IdBagagem=2;
+
+
+-- Comandos utilizados nos gráficos----------------------------------------------------------------------------------------------------------
 
 /* Quantidade de cidades por países */
 select count(fk_IdPais) as qtdPais, nomePais 
