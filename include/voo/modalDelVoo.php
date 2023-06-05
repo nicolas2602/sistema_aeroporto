@@ -7,7 +7,7 @@
       </div>
         <form method="post">
             <div class="modal-body">
-                <label for="">Deseja excluir o registro:</label>
+                <label for="">Deseja excluir o registro?</label>
                 <input type="hidden" name="idVoo" id="idVoo">
                 <input type="hidden" name="fkSaida" id="fkSaida">
                 <input type="hidden" name="fkDest" id="fkDest">
