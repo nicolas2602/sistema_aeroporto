@@ -1,3 +1,12 @@
+/*
+    Projeto 02 - PROJ02 - Trabalho
+    Nomes: Eduardo Luiz da Silva e Nicolas Hiroki Yonekawa
+    Curso: Sistemas de Informação
+    Semestre: 3°
+    Disciplina: Modelagem de Banco de Dados
+
+*/
+
 create database sistema_aeroporto;
 
 --País-----------------------------------------------------------------------------------------------------------------------------------
